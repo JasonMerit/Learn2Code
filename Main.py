@@ -1,7 +1,7 @@
 # Kryds og bolle
 
 
-class Game:
+class Game1:
     grid = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
     letters = ["a ", "b ", "c "]
 
@@ -43,6 +43,47 @@ class Game:
         """Place a mark on the grid at coordinate (y, x) (str, str) and switch player"""
         self.grid[self.letter2num[y]][int(x)] = self.player % 2
         self.player += 1
+
+class Game():
+    grid = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
+    action_space = [str(i) for i in range(9)]
+    X_turn = True # player turn
+
+    def __init__(self) -> None:
+        self.show()
+    
+    def show(self):
+        i = 0
+        for b in self.grid:
+            row = ""
+            for v in b:
+                row += " X " if v == 2 else " O " if v == 1 else f"[{i}]"
+                i += 1
+            print(row)
+        print()
+
+    def get_input(self):
+        """Return valid action int input from user"""
+        print(f"{'X' if self.X_turn else 'O'}'s turn")
+        user = ""
+        while True:
+            user = input(">")
+            if user in ["q", "quit", "exit"]:
+                quit()
+            if user in self.action_space:
+                return int(user)
+            print("Invalid action! - Try again")
+
+    def play(self):    
+        action = self.get_input()
+        self.step(action)
+        self.show()
+    
+    def step(self, action):
+        """Place a mark on the grid at coordinate and switch player"""
+        self.action_space.remove(str(action))  # TODO Error: pop bad indexing
+        self.grid[action // 3][action % 3] = int(self.X_turn) + 1  # TODO Hack: Typecast bool to int
+        self.X_turn = not self.X_turn                              # TODO Error: forget +1
 
 if __name__ == "__main__":
     game = Game()

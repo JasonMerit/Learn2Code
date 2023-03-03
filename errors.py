@@ -15,5 +15,6 @@ for a in A:
 
 # ------- Story -------
 
+
 # Write test functions instead of playing out every time
 # - Create class for game

@@ -1,12 +1,5 @@
 
 
 
-from Main import Game
-
-game = Game()
-game.show()
-game.step("a", "0")
-game.show()
-game.step("b", "1")
-game.show()
-game.step("c", "2")
+for i in range(9):
+    print(f'{i}, {i//3}, {i%3}')
