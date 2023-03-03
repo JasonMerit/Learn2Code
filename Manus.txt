@@ -1,3 +1,5 @@
 Implementation speed - wut?
 Bad input handling. 
 Testing at input
+
+Rookie mistakes
