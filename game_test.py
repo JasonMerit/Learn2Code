@@ -1,4 +1,4 @@
-from Main import Game
+from tic_tac_toe import Game
 
 game = Game()
 game.show()
