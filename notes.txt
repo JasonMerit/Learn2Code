@@ -8,3 +8,17 @@ test() - Fail in importing the module -> Create Game class # self. /
 
 Redefining the class get_input() and check for game input outside of the class as opposed to 
 how it was written first. get_input() should keep logic that goes across games.  
+
+
+Fails:
+- Scroll up to where error occurs, and have audience target error. 
+
+
+
+
+Files:
+- tic_tac_toe1: Long script. No classes.
+- tic_tac_toe2: TicTacToe class.
+- tic_tac_toe3: TicTacToe and Game class.
+
+- battle_ships1: Copy of latest TicTacToe into BattleShips class with custom methods.

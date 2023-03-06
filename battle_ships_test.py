@@ -1,8 +1,8 @@
-from tic_tac_toe import TicTacToe
+from battle_ships import BattleShips
 
 
 if __name__ == "__main__":
-    game = TicTacToe()
+    game = BattleShips()
     done = False
     while not done:
         done = game.random_step()
