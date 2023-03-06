@@ -2,7 +2,7 @@
 Simple project for illustrating OOP
 
 **Date**: Tuesday 14/3
-**Time**: 08:30
+**Time**: 09:00
 **Place**: build. 341 / aud. 23 
 
 Description:
