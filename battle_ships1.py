@@ -1,7 +1,7 @@
-from tic_tac_toe import Game
+from tic_tac_toe import Board
 import random 
 
-class BattleShips(Game):
+class BattleShips(Board):
     def __init__(self):
         super().__init__((10, 10), ["[ ]", "[B]", " O ", " X "])  # 0 = empty, 1 = boat, 2 = splash, 3 = hit
         # self.boats = [5, 4, 3, 3, 2]
@@ -11,14 +11,7 @@ class BattleShips(Game):
     def play(self):
         self.place_boats()  # 1st phase
 
-        while True:
-            user = self.get_input()
-            x, y = user[0].upper(), user[1:]          
-            if y in self.numbers and x in self.letters:
-                x, y = ord(x) - 65, int(y)       
-                if self.grid[y][x] == 0:                              
-                    break
-            print("Invalid action! - Try again")
+        x, y = self.get_input()
         
         done = self.step(x, y)
         self.show()
