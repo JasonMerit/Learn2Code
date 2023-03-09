@@ -1,4 +1,4 @@
-# Learn2Code
+# OOP-For_Dummies
 Simple project for illustrating OOP
 
 **Date**: Tuesday 14/3
