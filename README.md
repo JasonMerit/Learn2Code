@@ -1,4 +1,4 @@
-# OOP-For_Dummies
+# OOP-For-Dummies
 Simple project for illustrating OOP
 
 **Date**: Tuesday 14/3
