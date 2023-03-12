@@ -12,3 +12,8 @@ No laptops required, as I will be the one coding. I expect there to be a little 
 You'll get a chance to see how a real-world software project comes to life as I write code, debug, and test the implementations.
 
 This live coding event is perfect for anyone who wants to learn more about programming or improve their coding skills. Join me for an unforgettable experience and take your coding skills to the next level!
+
+
+## GitHub copilot
+- Add student mail: https://github.com/settings/emails
+- Submit application and verify with picture of student card: https://education.github.com/pack
