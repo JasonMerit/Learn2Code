@@ -49,7 +49,7 @@ class Board():
     def get_random_action(self):
         """Step in random action. Return True if game over"""
         action = random.choice(self.action_space)
-        x, y = int(action) % self.width, int(action) // self.height  # TODO: Forget to generalize width and height
+        x, y = int(action) % self.height, int(action) // self.height  # TODO: Forget to generalize width and height
         print(f'Random action: ({x}, {y})')
         return x, y
 

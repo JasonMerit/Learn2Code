@@ -13,7 +13,8 @@ how it was written first. get_input() should keep logic that goes across games.
 Fails:
 - Scroll up to where error occurs, and have audience target error. 
 
-
+Debugging:
+- Create assymetry when debugging, since some wrong formulas still work for symmetrical cases.
 
 
 Files:
@@ -22,3 +23,4 @@ Files:
 - tic_tac_toe3: TicTacToe and Game class.
 
 - battle_ships1: Copy of latest TicTacToe into BattleShips class with custom methods.
+- battle_ships2: Two boards for player and computer. Step and game_over methods.

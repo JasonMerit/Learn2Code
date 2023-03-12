@@ -4,9 +4,11 @@ import random
 class BattleShips():
     steps = 0
     def __init__(self, ship_count=1):
-        self.player = Board((10, 10), ["[ ]", "[B]", " O ", " X "], [0, 1], "===== Player board ====")  # empty, ship, splash, hit
-        self.computer = Board((10, 10), ["[ ]", "[B]", " O ", " X "], [0, 1], "===== Computer board ====")  # empty, ship, splash, hit
-        self.ship_count = self.player_ships = self.computer_ships = ship_count
+        self.player = Board((10, 10), ["[ ]", "[B]", " O ", " X "], [0, 1], "===== Player board ====")  # empty, boat, splash, hit
+        self.computer = Board((10, 10), ["[ ]", "[B]", " O ", " X "], [0, 1], "===== Computer board ====")  # empty, boat, splash, hit
+        self.ship_count = ship_count
+        self.player_ships = ship_count
+        self.computer_ships = ship_count
         
         # self.boats = [5, 4, 3, 3, 2]
         
