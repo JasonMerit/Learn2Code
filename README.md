@@ -14,8 +14,6 @@ You'll get a chance to see how a real-world software project comes to life as I 
 This live coding event is perfect for anyone who wants to learn more about programming or improve their coding skills. Join me for an unforgettable experience and take your coding skills to the next level!
 
 
-![alt text](https://github.com/[JasonMerit]/[OOP-For-Dummies]/blob/SundaySpeedrun/WhiteBoard.jpg?raw=true)
-
 ![My Image](WhiteBoard.jpg)
 
 
