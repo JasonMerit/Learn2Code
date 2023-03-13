@@ -11,6 +11,7 @@ class Board:
         self.X_turn = True
 
         self.letter_coords = [chr(i) for i in range(65, 65 + cols)]
+        self.number_coords = [str(i) for i in range(rows)]
         self.label = label
 
 
@@ -33,6 +34,9 @@ class Board:
                 quit()
             
             if len(user) != 2:
+                continue
+            x, y = user
+            if x not in self.letter_coords or y not in self.number_coords:
                 continue
             x, y = int(ord(user[0])) - 65, int(user[1])
             
