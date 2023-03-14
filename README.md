@@ -20,3 +20,7 @@ This live coding event is perfect for anyone who wants to learn more about progr
 ## GitHub copilot
 - Add student mail: https://github.com/settings/emails
 - Submit application and verify with picture of student card: https://education.github.com/pack
+
+## Future inspirations
+- Explanation of algorithms that your can code yourself https://www.youtube.com/@Reducible
+- Expert level code practices https://www.youtube.com/@CodeAesthetic
