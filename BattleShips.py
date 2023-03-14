@@ -1,129 +1,105 @@
-from TicTacToe import Board
 import random
-
+from TicTacToe import Board
 
 class BattleShips():
-    def __init__(self, rows, cols):
-        # 0: Empty, 1: Ship, 2: Hit, 3: Splash
-        self.rows, self.cols = rows, cols
-        self.player = Board(rows, cols, {0: '[ ]', 1: '[B]', 2: ' X ', 3 : '   '}, label="==== PLAYER BOARD ==== ")  # Player shoots player
-        self.computer = Board(rows, cols, {0: '[ ]', 1: '[ ]', 2: ' X ', 3 : '   '}, label = "==== COMPUTER BOARD ==== " )
-
-        self.player.name = "PLAYER"
-        self.computer.name = "COMPUTER"
-        self.ships = [5, 4, 3, 3, 2]
-        self.player.ship_count = self.computer.ship_count = sum(self.ships)
     
-    def play(self):
+    def __init__(self, ship_count):
+        cell2str = {0 : '[ ]', 1 : '[B]', 2 : ' X ', 3 : ' + '}
+        self.player = Board(5, 4, cell2str, label="=== PLAYER ===")
+        self.computer = Board(5, 4, cell2str, label="=== COMPUTER ===")
+
+        self.player.ship_count = self.computer.ship_count = ship_count
+
         self.place_ships()
         self.player.show()
         self.computer.show()
 
+    
+    def play(self):
+        i = 0
         while True:
+            print(f"======| STEP {i} |=======")
             self.step()
-        
-    def place_ships(self):
-        """Place ships on grid randomly"""
-        for board in [self.player, self.computer]:
-            for ship in self.ships:
-                while True:
-                    x0, y0 = random.randrange(self.cols), random.randrange(self.rows)
-                    direction = random.choice(['h', 'v'])
-                    if self.check_ship(board, x0, y0, ship, direction):
-                        self.place_ship(board, x0, y0, ship, direction)
-                        break                    
+            self.player.show()
+            self.computer.show()
+            i += 1
+    
+    def auto_play(self):
+        i = 0
+        while True:
+            print(f"======| STEP {i} |=======")
+            self.auto_step()
+            self.player.show()
+            self.computer.show()
+            i += 1
 
-    def check_ship(self, board: Board, x0, y0, ship, direction):
-        """Check if a ship can be placed at x0, y0 with a given direction and ship size"""
-        if direction == 'h':
-            if x0 + ship > self.cols:
-                return False
-            for i in range(ship):
-                if board.grid[y0][x0 + i] != 0:
-                    return False
-                
-        elif direction == 'v':
-            if y0 + ship > self.rows:
-                return False
-            for i in range(ship):
-                if board.grid[y0 + i][x0] != 0:
-                    return False
-        return True
-
-    def place_ship(self, board: Board, x0, y0, ship, direction):
-        """Place a ship at x0, y0 with a given direction"""
-        if direction == 'h':
-            for i in range(ship):
-                board.grid[y0][x0 + i] = 1
-
-        elif direction == 'v':
-            for i in range(ship):
-                board.grid[y0 + i][x0] = 1
-        
+    
     def step(self):
-        """Player shoots by input, and computer shoots randomly"""
-        # Player shoots
+        """Player shoot, then computer shoots"""
+
+        # Player
         hit = True
         while hit:
             x, y = self.computer.get_input()
-            # print("PLAYER SHOOTS AT ", x, y)
-            hit = self.shoot(x, y, self.computer)
+            hit = self.shoot(self.computer, x, y)
             if hit:
                 self.computer.show()
-                print("HIT!")
+                if self.computer.ship_count == 0:
+                    print("GAMEOVER")
+                    quit()
 
-        # Computer shoots
+        # Computer
         hit = True
         while hit:
-            x, y = self.player.sample()[0]
-            # print("COMPUTER SHOOTS AT ", x, y)
-            hit = self.shoot(x, y, self.player)
-
-        self.player.show()
-        self.computer.show()
+            hit = self.random_shoot(self.player)
+            if self.player.ship_count == 0:
+                print("GAMEOVER")
+                quit()
     
-    def shoot(self, x, y, board: Board):
-        """Return True if ship is hit, False if splash"""
+    def auto_step(self):
+        for board in [self.player, self.computer]:
+            hit = True
+            while hit:
+                hit = self.random_shoot(board)
+                if board.ship_count == 0:
+                    print("GAMEOVER")
+                    quit()
+
+    def place_ships(self):
+        """Randomly place 1x1 ships"""
+        for board in [self.player, self.computer]:
+            ships = random.sample(board.action_space, self.player.ship_count)
+
+            for x, y in ships:
+                board.grid[y][x] = 1
+
+    def shoot(self, board: Board, x, y):
+        """
+        Board board shot at x, y.
+        If hit, return True
+        """
         board.action_space.remove((x, y))
+        print(board.label, " WAS SHOT AT ", x, y)
         if board.grid[y][x] == 1:
             board.grid[y][x] = 2
             board.ship_count -= 1
-            if board.ship_count == 0:
-                board.show()
-                print(f"{board.name} LOOSES!")
-                quit()
             return True
         else:
             board.grid[y][x] = 3
             return False
-        
-    def random(self):
-        """Randomly choose an action from action_space and step"""
-        # Player shoots
-        hit = True
-        while hit:
-            x, y = self.computer.sample()[0]
-            print("PLAYER SHOT AT ", x, y)
-            hit = self.shoot(x, y, self.computer)
-
-        # Computer shoots
-        hit = True
-        while hit:
-            x, y = self.player.sample()[0]
-            print("COMPUTER SHOT AT ", x, y)
-            hit = self.shoot(x, y, self.player)
-
-        self.player.show()
-        self.computer.show()
+    
+    def random_shoot(self, board: Board):
+        try:
+            x, y = random.choice(board.action_space) 
+        except IndexError:
+            print(board.action_space)
+            quit()
+        return self.shoot(board, x, y)
 
 
-if __name__ == "__main__":
-    game = BattleShips(10, 10)  
+
+
+if __name__ == '__main__':
+    game = BattleShips(10)
     # game.play()
-
-    game.place_ships()
-    game.player.show()
-    game.computer.show()
-    while True:
-        # input("> ")
-        game.random()
+    game.auto_play()
