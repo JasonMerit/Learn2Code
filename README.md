@@ -1,3 +1,5 @@
+Recording: https://panopto.dtu.dk/Panopto/Pages/Sessions/List.aspx#folderID=%220acbc7a6-af50-424e-b5fb-afc500bd4fdd%22
+
 # OOP-For-Dummies
 Simple project for illustrating OOP
 
